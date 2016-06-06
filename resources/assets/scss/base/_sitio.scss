@@ -1,0 +1,53 @@
+
+
+
+
+/*----------------------------------------------
+	$GENERALES
+------------------------------------------------*/
+
+html{
+	@media screen and(min-width:960px) {
+		font-size: 100%;
+	}
+}
+
+body{
+
+	font-family: $font-family;
+	color: $font-color;
+	background: $complementary-color;
+}
+
+
+a{
+	text-decoration: none;
+	color: $link-color;
+	&:hover{
+		$link-color:hover;
+	}
+}
+
+h1,h2,h3,h4,h5,h6{
+	margin-bottom: 0.75rem;
+	color: $title-color;
+	font-family: $font-family;
+}
+
+h3{
+	font-size:1.5rem;
+}
+
+
+img{
+	max-width: 100%;
+	height: auto;
+}
+
+.row{
+	max-width: $max-width;
+}
+
+.container{
+	
+}//FIN CONTAINER

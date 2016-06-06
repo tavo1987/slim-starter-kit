@@ -1,0 +1,36 @@
+{
+  "name": "edwin/microframework",
+  "type": "project",
+  "version": "1.0",
+  "description": "Pequeño framework para proyectos php",
+  "homepage": "https://github.com/tavo1987/microframework",
+  "license": "MIT",
+  "authors": [
+      {
+        "name": "Edwin Ramírez",
+        "email": "tavo198718@gmail.com",
+        "homepage": "https://www.facebook.com/edwin.ramirez.923",
+        "role": "Developer"
+      }
+  ],
+
+  "require": {
+    "php": ">=5.2.0",
+    "illuminate/database": "^5.2",
+    "vlucas/phpdotenv": "^2.2",
+    "sendgrid/sendgrid": "^4.0",
+    "filp/whoops": "^2.1"
+  },
+
+
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    },
+
+    "files": [
+      "bootstrap/helpers.php"
+    ]
+  }
+
+}

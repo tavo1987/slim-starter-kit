@@ -1,0 +1,56 @@
+
+
+/*=================================================================
+	PAGINATION
+===================================================================*/
+
+.pagination{
+	margin:1rem auto;
+	text-align: center;
+	padding: .5rem;
+
+	//muestra el total de paginas ejemplo:página 1 de 20.
+	.pagination__info{
+		color: $base-color;
+		display: inline-block;
+		padding-bottom: .75em;
+	}
+	
+	//lista desordenada
+	.page-numbers { 
+		@include fontSize(13); //px
+		border-radius: 3px;
+		padding: 2px 8px;
+
+
+		li{
+			display: inline-block;
+		}
+	}
+
+	//item  curnent o el numero de página que esta ubicado
+	.page-numbers.current { 
+		color: $white;
+		background:$base-color;
+	}
+	
+	//puntos suspensivos de la meitad de paginación
+	.page-numbers .dots{ 
+		letter-spacing: 1px;
+	}
+
+	//los links dentro de los li
+	a.page-numbers{ 
+		color: #666; 
+		&:hover{
+			background: lighten($dark-gray,20%);
+		}
+	}
+
+	//prev page-numbers primera y ultima botones
+	.next.page-numbers,.prev.page-numbers{
+		@include fontSize(16);
+		display: block;
+
+	}
+}

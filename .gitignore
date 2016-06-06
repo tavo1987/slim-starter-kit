@@ -1,0 +1,8 @@
+/vendor
+/node_modules
+.env
+#archivos phpstorm
+.idea
+.idea/workspace.xml
+#archivos prepros
+*.cfg

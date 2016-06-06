@@ -1,0 +1,33 @@
+
+
+
+
+/*---------------------------------------------------------------
+	$botones
+-----------------------------------------------------------------*/
+
+.button{
+	color: #fff;
+	cursor: pointer;
+	border: none;
+	transition: all .3s ease;
+	background-color: $link-color;
+	padding: .35rem 3rem;
+	box-shadow: 3px 3px 10px  1px rgba($black,.5);
+	font-size:1.75rem !important;
+
+
+	&:hover{
+		background: darken($link-color,10);
+	}
+
+	&.secondary{
+		color: $font-color;
+		&:hover{
+			background: $link-color-hover;
+			color: $white;
+		}
+	}
+
+}//FIN BUTTON
+

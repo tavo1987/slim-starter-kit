@@ -1,0 +1,54 @@
+
+
+
+
+/*------------------------------------------------------------------
+	$SETTINGS
+--------------------------------------------------------------------*/
+
+// $variables generales de colores
+
+$base-color:   #9E005D;
+$second-color: rgba(#726F7A,80);
+$complementary-color: lighten(#E1DEF3,5);
+
+//backgrouund colors
+$bg-color: darken(#F1F1F1,1%);
+
+
+// $colores
+$white:     #fff;
+$black:     #000;
+$dark:      #222;
+$dark-light: #333;
+$gray:      #ccc;
+$dark-gray: darken($gray,25%);
+$success:   #5cb85c;
+$danger:   lighten(red,10);
+
+
+//colores fuentes
+$font-color:      rgba(#726F7A,70);
+$title-color:     #343436;
+$link-color:      #D16497;
+$link-color-hover: darken($link-color,10);
+
+//breakpoints
+$mobile:28.75em;//460px
+$tablet:48em;//768px
+$desktop:60em;//1000px
+$full-hd:75em;//1200pc
+
+
+// $Fuente
+$font-size:     16;
+$font-family:   'Lato', sans-serif !important;
+
+
+// $ancho maximo
+$max-width:     60rem; //960px
+
+//Links
+
+//border radius
+$radius:        3px;
