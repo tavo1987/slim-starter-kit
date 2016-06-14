@@ -1,20 +1,11 @@
 <?php
 
-function view($template, $vars = [])
-{
-    extract($vars);
-
-    $path = __DIR__."/../resources/views/";
-
-    ob_start();
-
-    require $path . "$template.view.php";
-
-    $templateContent = ob_get_clean();
-
-    require $path . "layout.view.php";
-
+function view($template, $vars = []){
+    $loader = new Twig_Loader_Filesystem('resources/views/');
+    $twig = new Twig_Environment($loader);
+    echo $twig->render($template, $vars);
 }
+
 
 function controller($controller)
 {
@@ -30,7 +21,7 @@ function controller($controller)
 
         http_response_code(404);
 
-        return view('404');
+        return view('404.twig');
     }
 
     //require __DIR__. "/../app/Controllers/$controller"."Controller.php";

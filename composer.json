@@ -19,7 +19,8 @@
     "illuminate/database": "^5.2",
     "vlucas/phpdotenv": "^2.2",
     "sendgrid/sendgrid": "^4.0",
-    "filp/whoops": "^2.1"
+    "filp/whoops": "^2.1",
+    "twig/twig": "~1.0"
   },
 
 
