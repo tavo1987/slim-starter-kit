@@ -5,23 +5,34 @@
 
 {% block content %}
 
-	<div class="container">
-	    <header class="row header large-collapse">
-	        <h1>Header</h1>
-	    </header>
+    <div class="container">
+        <header class="row header large-collapse">
+            <h1>Header</h1>
+        </header>
 
-	    <section>
-	    	<h1>Content: {{user}}</h1>
-	    </section>
+        <section>
+            <h1>Content</h1>
+        </section>
 
-	    <div class="row large-collapse">
-	        <div class="small-12 columns">
-	            <form action="quiz" method="POST" id="quiz">
-	             	   
-	            </form>
-	        </div>
-	    </div>
-
-	</div><!--FIN CONTAINER-->
+        <div class="row large-collapse">
+            <div class="small-12 columns">
+                <form action="quiz" method="POST" id="quiz" data-abide novalidate>
+                    <h1>Test</h1>
+                    <!-- Add "display: none" right away -->
+                        <label>
+                            Name
+                            <input type="text" required>
+                            <span class="form-error">This field is required.</span>
+                        </label>
+                        <label>
+                            Email
+                            <input type="email" name required>
+                            <span class="form-error">This field is required.</span>
+                        </label>
+                    <button class="button" type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div><!--FIN CONTAINER-->
 
 {% endblock %}
