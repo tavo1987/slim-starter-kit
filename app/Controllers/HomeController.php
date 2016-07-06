@@ -2,4 +2,4 @@
 
 namespace App\Controllers;
 
-view('home.twig', compact('metas'));
+view('home.twig');
