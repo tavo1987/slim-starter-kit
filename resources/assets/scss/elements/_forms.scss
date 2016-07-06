@@ -5,58 +5,51 @@
 \*===============================================*/
 
 form{
-  
-  h3{
-    margin-top:1.35rem;
-    margin-bottom:.25rem;
+
+    h3{
+        margin-top:1.35rem;
+        margin-bottom:.25rem;
     span{
-      padding-right:.5rem;
+        padding-right:.5rem;
     }
-  }//FIN H3
+    }//FIN H3
 
-  input[type="text"]{
-    background: transparent;
-    border: none;
-    max-width: 550px;
-    border-radius: 0;
-    box-shadow: none;
-    border-bottom:2px solid $font-color ;
-    transition: all .3s ease-in;
-    margin-bottom:.25rem;
+    input[type="text"]{
+        border-radius: 0;
+        box-shadow: none;
+        transition: all .3s ease-in;
+        margin-bottom:.25rem;
 
-    &:focus{
-      background: transparent;
-      border: none;
-      border-bottom:2px solid $link-color;
-      box-shadow: none;
-      position: relative;
-    }
-  }//FIN INPUT TEXT
+        &:focus{
+          box-shadow: none;
+          position: relative;
+        }
+    }//FIN INPUT TEXT
 
-  input[type="radio"]{
-    display: block;
-    position: absolute;
-    opacity:0;
-    
+    input[type="radio"]{
+        display: block;
+        position: absolute;
+        opacity:0;
+
     &:checked + label:after{
-      content:'';
-      width:12px;
-      height: 12px;
-      position: absolute;
-      top: 50%;
-      border-radius: 50%;
-      left:.9rem;
-      transform:translateY(-50%);
-      background: $link-color;
+        content:'';
+        width:12px;
+        height: 12px;
+        position: absolute;
+        top: 50%;
+        border-radius: 50%;
+        left:.9rem;
+        transform:translateY(-50%);
+        background: $link-color;
     }
 
     + label{
-      display: block;
-      position: relative;
-      line-height:1.4;
-      padding-left:3rem;
-      color: $font-color;
-      font-size:1.25rem;
+        display: block;
+        position: relative;
+        line-height:1.4;
+        padding-left:3rem;
+        color: $font-color;
+        font-size:1.25rem;
 
       &:before{
         content:'';
@@ -70,22 +63,19 @@ form{
         border:1px solid $font-color;
       }
     }//FIN LABEL
-  }//FIN INPUT RADIO
-  
-  label.error{
-    color: $danger;
-    font-weight: normal;
-    font-size:.75rem;
-    //display: block;
-    padding-left: 0;
-    &:before{
-      content:'';
-      width: 0;
-      height: 0;
-      border: none;
-    }
+    }//FIN INPUT RADIO
 
-  }//LABEL ERROR
-
+    label.error{
+        color: $danger;
+        font-weight: normal;
+        font-size:.75rem;
+        padding-left: 0;
+        &:before{
+            content:'';
+            width: 0;
+            height: 0;
+            border: none;
+        }
+    }//LABEL ERROR
 }//FIN FORM
 

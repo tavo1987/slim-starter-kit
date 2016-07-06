@@ -15,7 +15,7 @@
 
 
 //base del sitio web
-@import "base/_foundation";//6.2.1
+@import "base/_foundation";//6.2.3
 @import "base/_sitio";
 
 //modulos
@@ -27,5 +27,4 @@
 
 //theme
 @import "theme/header";
-@import "theme/quiz";
 @import "theme/thanks";

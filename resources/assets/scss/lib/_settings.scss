@@ -3,14 +3,14 @@
 
 
 /*------------------------------------------------------------------
-	$SETTINGS
+    $SETTINGS
 --------------------------------------------------------------------*/
 
 // $variables generales de colores
 
-$base-color:   #9E005D;
-$second-color: rgba(#726F7A,80);
-$complementary-color: lighten(#E1DEF3,5);
+$base-color         :#2199e8; //celeste
+$second-color       : rgba(#726F7A,80);
+$complementary-color: #f7f7f7;
 
 //backgrouund colors
 $bg-color: darken(#F1F1F1,1%);
@@ -30,7 +30,7 @@ $danger:   lighten(red,10);
 //colores fuentes
 $font-color:      rgba(#726F7A,70);
 $title-color:     #343436;
-$link-color:      #D16497;
+$link-color:      #2199e8;
 $link-color-hover: darken($link-color,10);
 
 //breakpoints
@@ -46,7 +46,7 @@ $font-family:   'Lato', sans-serif !important;
 
 
 // $ancho maximo
-$max-width:     60rem; //960px
+$max-width:     62.5rem; //1000px
 
 //Links
 

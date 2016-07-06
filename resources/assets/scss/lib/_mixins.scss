@@ -3,29 +3,29 @@
 
 
 /*------------------------------------------------------------------
-	$mixins
+    $mixins
 --------------------------------------------------------------------*/
 @mixin vendor($property:box-sizing,$value:border-box){
-	-webkit-#{$property}: $value ;
-	-moz-#{$property}:    $value ;
-	-ms-#{$property}:     $value ;
-	#{$property}:         $value ;
+    -webkit-#{$property}: $value ;
+    -moz-#{$property}:    $value ;
+    -ms-#{$property}:     $value ;
+    #{$property}:         $value ;
 }
 
 
 //mixin para con fallback converit pixeles a rem en las fuentes
 @mixin fontSize($size:$font-size){
-	font-size: $size * 1px;
-	font-size: ($size / $font-size) * 1rem;
+    font-size: $size * 1px;
+    font-size: ($size / $font-size) * 1rem;
 }
 
-//mixin para bordes redondeados 
+//mixin para bordes redondeados
 @mixin radius($valor:3px){
-	-webkit-border-radius:$valor;
-	-moz-border-radius:$valor;
-	-ms-border-radius:$valor;
-	-o-border-radius:$valor;
-	  border-radius:$valor;
+    -webkit-border-radius:$valor;
+    -moz-border-radius:$valor;
+    -ms-border-radius:$valor;
+    -o-border-radius:$valor;
+      border-radius:$valor;
 }
 
 
