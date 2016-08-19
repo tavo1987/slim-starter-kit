@@ -16,17 +16,17 @@
 
         <div class="row large-collapse">
             <div class="small-12 columns">
-                <form action="quiz" method="POST" id="quiz" data-abide novalidate>
+                <form action="lead" method="POST" id="lead" data-abide novalidate>
                     <h1>Test</h1>
                     <!-- Add "display: none" right away -->
                         <label>
                             Name
-                            <input type="text" required>
+                            <input type="text" name="name" required>
                             <span class="form-error">This field is required.</span>
                         </label>
                         <label>
                             Email
-                            <input type="email" name required>
+                            <input type="email" name="email" required>
                             <span class="form-error">This field is required.</span>
                         </label>
                     <button class="button" type="submit">Enviar</button>
