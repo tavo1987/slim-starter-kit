@@ -8,6 +8,8 @@ use SendGrid;
 class EmailController
 {
 
+    protected static $path =  __DIR__. "/../../resources/templates-emails/";
+
     /**
      * @param string $to
      * @param string $from
@@ -17,11 +19,15 @@ class EmailController
      * @param string $company
      * @return void
      */
-    public static function send($to, $from, $subject, $html, $name ='', $company = 'Lactacyd')
+    public static function send($to, $from, $subject, $template, $lead, $company = 'Muber')
     {
+        ob_start();
+        require static::$path . $template . '.php' ;
+        $html = ob_get_clean();
+
         $sendgrid = new SendGrid($_ENV['SENDGRID_APIKEY'], ["turn_off_ssl_verification" => true]);
         $email    = new SendGridEmail();
-        $email->addTo($to, $name)
+        $email->addTo($to)
               ->setFrom($from)
               ->setFromName($company)
               ->setSubject($subject)
