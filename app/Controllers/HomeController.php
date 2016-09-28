@@ -2,4 +2,10 @@
 
 namespace App\Controllers;
 
-view('home.twig');
+class HomeController
+{
+    public function index()
+    {
+        return view('home.twig');
+    }
+}

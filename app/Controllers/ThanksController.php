@@ -2,5 +2,10 @@
 
 namespace App\Controllers;
 
-return view('thanks.twig');
-
+class ThanksController
+{
+    public function index()
+    {
+        return view('thanks.twig');
+    }
+}

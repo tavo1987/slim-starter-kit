@@ -2,5 +2,10 @@
 
 namespace App\Controllers;
 
-view('error.twig');
-
+class ErrorController
+{
+    public function index()
+    {
+        return view('error.twig');
+    }
+}
