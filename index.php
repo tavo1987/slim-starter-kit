@@ -20,17 +20,4 @@
 
 require_once __DIR__ . '/bootstrap/autoload.php';
 
-$url = (isset( $_GET['url'] ) ) ? $_GET['url'] : '/Home';
-
-controller($url);
-
-
-
-
-
-
-
-
-
-
-
+$app->run();
