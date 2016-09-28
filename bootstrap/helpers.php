@@ -8,22 +8,6 @@ function view($template, $vars = [])
 }
 
 
-function controller($controller)
-{
-    $controller = ucfirst($controller).'Controller';
-
-    $file = __DIR__. "/../app/Controllers/$controller".".php";
-
-    if (file_exists($file)) {
-        require $file;
-    } else {
-        http_response_code(404);
-
-        return view('404.twig');
-    }
-}
-
-
 /**
  * @param $data
  * @return mixed|string
@@ -58,15 +42,6 @@ function validateData($post)
     }
 
     return $errors;
-}
-
-function isPost()
-{
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        return true;
-    }
-
-    return false;
 }
 
 function cleanRequest($post = array())
