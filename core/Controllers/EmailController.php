@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace Core\Controllers;
 
 use SendGrid\Email as SendGridEmail;
 use SendGrid;
@@ -19,7 +19,7 @@ class EmailController
      * @param string $company
      * @return void
      */
-    public static function send($to, $from, $subject, $template, $lead, $company = 'Muber')
+    public static function send($to, $subject, $template, $lead)
     {
         ob_start();
         require static::$path . $template . '.php' ;
@@ -28,8 +28,8 @@ class EmailController
         $sendgrid = new SendGrid($_ENV['SENDGRID_APIKEY'], ["turn_off_ssl_verification" => true]);
         $email    = new SendGridEmail();
         $email->addTo($to)
-              ->setFrom($from)
-              ->setFromName($company)
+              ->setFrom($_ENV['FROM'])
+              ->setFromName($_ENV['NAME_COMPANY'])
               ->setSubject($subject)
               ->setHtml($html);
         try {
