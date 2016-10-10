@@ -7,6 +7,6 @@ use App\Controllers\ThanksController;
 
 $app->get('/', [HomeController::class, 'index']);
 $app->post('/store', [LeadController::class, 'store']);
-$app->get('/error', [ErrorControllerController::class, 'index']);
+$app->get('/error', [ErrorController::class, 'index']);
 $app->get('/thanks', [ThanksController::class, 'index']);
 
