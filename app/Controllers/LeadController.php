@@ -29,8 +29,8 @@ class LeadController
             $lead->save();
         }
 
-        Email::send($lead->email, 'Gracias por Contáctarnos', 'lead', $lead);
-        Email::send('tavo198718@gmail.com', 'Nuevo datos', 'admin', $lead);
+        Email::send($lead->email, getenv('LEAD_EMAIL_SUBJECT'), 'lead', $lead);
+        Email::send(getenv('ADMIN_EMAIL'), getenv('ADMIN_EMAIL_SUBJECT'), 'admin', $lead);
 
         redirect('thanks');
     }
