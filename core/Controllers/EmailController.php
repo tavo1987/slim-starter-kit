@@ -2,8 +2,10 @@
 
 namespace Core\Controllers;
 
-use SendGrid\Email as SendGridEmail;
 use SendGrid;
+use SendGrid\Content;
+use SendGrid\Email as SendGridEmail;
+use SendGrid\Mail;
 
 class EmailController
 {
@@ -25,21 +27,22 @@ class EmailController
         require static::$path . $template . '.php' ;
         $html = ob_get_clean();
 
-        $sendgrid = new SendGrid($_ENV['SENDGRID_APIKEY'], ["turn_off_ssl_verification" => true]);
-        $email    = new SendGridEmail();
-        $email->addTo($to)
-              ->setFrom($_ENV['FROM'])
-              ->setFromName($_ENV['NAME_COMPANY'])
-              ->setSubject($subject)
-              ->setHtml($html);
+        $from    = new SendGridEmail(getenv('NAME_COMPANY'), getenv('FROM'));
+        $to      = new SendGridEmail(null, $to);
+        $content = new Content("text/html", $html);
+        $mail    = new Mail($from, $subject, $to, $content);
+
+        $apiKey = getenv('SENDGRID_APIKEY');
+        $sg     = new SendGrid($apiKey);
+
         try {
-            $sendgrid->send($email);
+            $sg->client->mail()->send()->post($mail);
         } catch (Exception $e) {
             echo $e->getCode();
 
             foreach ($e->getErrors() as $er) {
                 echo $er;
             }
-        }//FIN TRY
-    }//FIN SEND
-}//FIN EMAIL
+        }//END TRY*/
+    }//END SEND
+}//END EMAIL
