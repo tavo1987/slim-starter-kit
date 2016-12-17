@@ -15,8 +15,8 @@
 
 
 //base del sitio web
-@import "base/_foundation";//6.2.3
-@import "base/_sitio";
+@import "base/foundation";
+@import "base/sitio";
 
 //modulos
 @import "abstractions/buttons";
