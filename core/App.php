@@ -43,7 +43,7 @@ class App
     public function run()
     {
         $router = $this->container->router;
-        $path = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/';
+        $path = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
         $router->setPath($path);
 
         try {
