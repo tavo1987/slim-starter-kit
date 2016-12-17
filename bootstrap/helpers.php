@@ -67,5 +67,10 @@ function isEmail($key)
 
 function redirect($url)
 {
-    header('Location: '.getenv('SITE_URL').$url);
+    $slash = substr($url, 0, 1);
+
+    if ($slash === '/') {
+        return header('Location: '.getenv('SITE_URL').$url);
+    }
+    return header('Location: '.getenv('SITE_URL').'/'.$url);
 }
