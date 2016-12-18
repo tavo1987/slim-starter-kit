@@ -1,6 +1,7 @@
 <?php
 
 use Dotenv\Dotenv;
+use Valitron\Validator as V;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -27,6 +28,12 @@ $dotenv->load();
 date_default_timezone_set(getenv('SET_TIME_LOCATE'));
 
 /**
+ * Valitron Library
+ */
+V::langDir(__DIR__.'/../resources/lang/valitron'); // always set langDir before lang.
+V::lang(getenv('VALIDATOR_LANG'));
+
+/**
  * Eloquent configuration
  */
 require_once __DIR__ . '/../config/database.php';
@@ -36,5 +43,7 @@ require_once __DIR__ . '/../config/database.php';
  */
 $app = new \Core\App;
 require_once __DIR__ . '/../app/routes.php';
+
+
 
 
