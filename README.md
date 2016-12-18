@@ -1,3 +1,6 @@
+[![Packagist](https://img.shields.io/badge/Packagist-v3.0.1-orange.svg?style=flat-square)](https://packagist.org/packages/tavo1987/mini-framework)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://packagist.org/packages/tavo1987/mini-framework)
+
 # Mini framework para creación de landing pages
 Mini framework para la creación rápida de landing pages en las que se necesite implementar formularios.
 
