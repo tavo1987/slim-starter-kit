@@ -15,4 +15,10 @@ class Lead extends Model
     {
         return $this->attributes['name'];
     }
+
+    public function isRegistered($email)
+    {
+        return $this->where('email', '=', $email)->first();
+    }
+
 }
