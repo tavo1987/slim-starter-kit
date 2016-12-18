@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Collection;
+
 function view($template, $vars = [])
 {
     $loader = new Twig_Loader_Filesystem('resources/views/');
@@ -17,53 +19,28 @@ function clean_input($data)
     $data = trim($data);
     $data = strip_tags($data);
     $data = str_replace(
-        array("\\", "¨", "º", "-", " ",
-            "#", "@", "|", "!", "\"",
-            "·", "$", "%", "&", "/",
+        array("\\", "¨", "º", "-",
+            "#", "|", "!", "\"",
+            "·", "$", "&", "/",
             "(", ")", "?", "'", "¡",
             "¿", "[", "^", "<code>", "]",
             "+", "}", "{", "¨", "´",
-            ">", "<", ";", ",", ":", "Ç"),
-        '',
+            ">", "<", ";", "Ç"),
+        ' ',
         $data
     );
 
     return $data;
 }
 
-function validateData($post)
-{
-    $errors =false;
-
-    foreach ($post as $key => $value) {
-        if (!isset($key) || empty($value)) {
-            $errors = true;
-        }
-    }
-
-    return $errors;
-}
-
 function cleanRequest($post = array())
 {
     foreach ($post as $key => $value) {
-        if (!isEmail($key)) {
-            $post[$key] = clean_input($value);
-        }
+        $post[$key] = clean_input($value);
     }
 
     return $post;
 }
-
-function isEmail($key)
-{
-    if ($key == 'email') {
-        return true;
-    }
-
-    return false;
-}
-
 
 function redirect($url)
 {
@@ -73,4 +50,10 @@ function redirect($url)
         return header('Location: '.getenv('SITE_URL').$url);
     }
     return header('Location: '.getenv('SITE_URL').'/'.$url);
+}
+
+function collection($data)
+{
+    $collection = new Collection($data);
+    return $collection;
 }
