@@ -1,4 +1,4 @@
-[![Packagist](https://img.shields.io/badge/Packagist-v3.0.1-orange.svg?style=flat-square)](https://packagist.org/packages/tavo1987/mini-framework)
+[![Packagist](https://img.shields.io/badge/Packagist-v3.0.2-orange.svg?style=flat-square)](https://packagist.org/packages/tavo1987/mini-framework)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://packagist.org/packages/tavo1987/mini-framework)
 
 # Mini framework para creación de landing pages
