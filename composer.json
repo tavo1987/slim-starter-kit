@@ -20,7 +20,8 @@
         "vlucas/phpdotenv": "^2.2",
         "sendgrid/sendgrid": "~5.1",
         "filp/whoops": "^2.1",
-        "twig/twig": "~1.0"
+        "twig/twig": "~1.0",
+        "vlucas/valitron": "^1.3"
     },
 
 
