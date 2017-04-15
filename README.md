@@ -4,8 +4,8 @@
 # Mini framework para creación de landing pages
 Mini framework para la creación rápida de landing pages en las que se necesite implementar formularios.
 
-##Características 
- - Validar formularios, tanto en frontend (Abide foundation) como el backend (Valitron) 
+## Características
+ - Validar formularios, tanto en frontend (Abide foundation) como el backend (Valitron)
  - Guardar en base de datos a través de eloquent
  - Enviar emails a través del api de sendgrid v3
  - Concatenar y minificar archivos js mediante prepros
@@ -22,7 +22,7 @@ Mini framework para la creación rápida de landing pages en las que se necesite
  - Helper para mostrar vistas
  - Fácil instalación mediante composer
 
-## Herramientas y Tecnologías utilizadas 
+## Herramientas y Tecnologías utilizadas
 
 * [Php](http://php.net/manual/en/intro-whatis.php)
 * [Sass](http://sass-lang.com/)
@@ -36,10 +36,10 @@ Mini framework para la creación rápida de landing pages en las que se necesite
 * [Whoops](https://github.com/filp/whoops)
 * [Laravel Collections](https://laravel.com/docs/5.3/eloquent-collections)
 
-##Requerimientos
+## Requerimientos
 - ` "php": ">=5.6.4"`
 
-##Instalación
+## Instalación
 1. Ejecutar el siguiente comando para crear el proyecto:
     - `composer create-project tavo1987/mini-framework project-name`
 2. Crear base de datos para guardar datos del formulario
@@ -49,15 +49,15 @@ Mini framework para la creación rápida de landing pages en las que se necesite
     * email - `varchar`
     * date - `datetime`
 4. Configurar los datos correctos en el archivo `.env`
-5. Seleccionar el idioma de los mensajes de valitron mediante la variable `VALITRON_LANG` 
+5. Seleccionar el idioma de los mensajes de valitron mediante la variable `VALITRON_LANG`
     este puede tener los siguiente valores `en` or `es` por defecto esta en inglés
 5. Listo! eso es todo
 
 ## Vulnerabilidades de Seguridad o Errores
 
-Si descubres una vulnerabilidad de seguridad dentro de este mini framework, envía un correo electrónico a 
+Si descubres una vulnerabilidad de seguridad dentro de este mini framework, envía un correo electrónico a
 tavo198718@gmail.com. Todas las vulnerabilidades de seguridad serán tratadas los más rápido posible.
-o abre un issue para especificar el error. 
+o abre un issue para especificar el error.
 
 ## Licencia
 
