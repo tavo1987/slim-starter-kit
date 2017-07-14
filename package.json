@@ -1,0 +1,28 @@
+{
+  "name": "mini-framework",
+  "version": "3.1.0",
+  "description": "mini framework for landings pages",
+  "main": "index.js",
+  "repository": "git@github.com:tavo1987/mini-framework.git",
+  "author": "tavo1987 <tavo198718@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.12",
+    "browser-sync-webpack-plugin": "^1.2.0",
+    "cross-env": "^5.0.1",
+    "laravel-mix": "^1.2.1"
+  },
+  "dependencies": {
+    "foundation-sites": "^6.4.1",
+    "jquery": "^3.2.1",
+    "vee-validate": "^2.0.0-rc.7",
+    "vue": "^2.4.1"
+  }
+}
