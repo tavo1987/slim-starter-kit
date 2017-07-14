@@ -4,20 +4,9 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-
-    <div class="container">
-        <header class="header large-collapse">
-            <h1>Header</h1>
-        </header>
-        <section>
-            <h2>Example Form With Vuejs</h2>
-            {{ include('partials/alerts.twig')}}
-            <app-form></app-form>
-        </section>
-
-        <footer>
-            <h2>Example Footer</h2>
-        </footer>
-    </div><!--END CONTAINER-->
-
+    <section>
+        <h2>Example Form With Vuejs</h2>
+        {{ include('partials/alerts.twig')}}
+        <app-form></app-form>
+    </section>
 {% endblock %}
