@@ -22,9 +22,19 @@
         <meta property="og:locale" content="OG_LOCATE">
     </head>
     <body>
-        <div id="app">
+
+        <header class="header large-collapse">
+            <h1>Header</h1>
+        </header><!-- ./END HEADER-->
+
+        <div id="app" class="container">
             {% block content %}{% endblock %}
-        </div>
+        </div><!-- ./END CONTAINER-->
+
+        <footer>
+            <h2>Footer</h2>
+        </footer><!-- ./END FOOTER-->
+
         <script src="js/app.min.js"></script>
     </body>
 </html>
