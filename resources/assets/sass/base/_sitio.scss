@@ -46,7 +46,9 @@ img{
     max-width: $max-width;
 }
 
-.container{
+.container,
+header,
+footer{
     max-width: $max-width;
     margin: auto;
 }//FIN CONTAINER
