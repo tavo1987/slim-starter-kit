@@ -1,12 +1,18 @@
+/**
+ * We'll load jQuery, uncomment if you need it's
+ */
+//import $ from "jquery";
 
-import $ from "jquery";
-import 'foundation-sites';
+
+/**
+ * We'll load Foundation, uncomment if you need it's
+ */
+//import 'foundation-sites';
 
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
 
 
-$(document).foundation();
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -19,3 +25,8 @@ Vue.component('app-form', require('./components/Form.vue'));
 const app = new Vue({
    el: '#app'
 });
+
+/**
+ * Init foundation, uncomment if you need it's
+ */
+//$(document).foundation();
