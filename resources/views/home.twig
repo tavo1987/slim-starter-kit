@@ -4,33 +4,30 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+    <section>
+        {{ include('partials/alerts.twig')}}
 
-    <div class="container">
-        <header class="row header large-collapse">
-            <h1>Header</h1>
-        </header>
-        <section>
-            <h1>Content</h1>
-        </section>
-        <div class="row large-collapse">
-            <div class="small-12 columns">
-                {{ include('partials/alerts.twig')}}
-                <form action="store" method="POST" id="lead" data-abide novalidate>
-                    <h1>Test</h1>
-                        <label>
-                            Name
-                            <input type="text" name="name" required>
-                            <span class="form-error">This field is required.</span>
-                        </label>
-                        <label>
-                            Email
-                            <input type="email" name="email" required>
-                            <span class="form-error">This field is required.</span>
-                        </label>
-                    <button class="button" type="submit">Enviar</button>
-                </form>
-            </div>
+        <p>
+            Choose an option and delete the option that does not suit you.
+        </p>
+
+        <h2>Example form without vue.js</h2>
+        <div class="form">
+            <form action="store" method="POST" id="lead" data-abide>
+                <label>
+                    Names
+                    <input type="text" name="name" required>
+                </label>
+
+                <label>
+                    Email
+                    <input type="email" name="email" required>
+                </label>
+                <button class="button primary" type="submit">Enviar</button>
+            </form>
         </div>
-    </div><!--END CONTAINER-->
 
+        <h2>Example form with Vuejs</h2>
+        <app-form></app-form>
+    </section>
 {% endblock %}
