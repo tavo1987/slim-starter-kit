@@ -5,8 +5,29 @@
 
 {% block content %}
     <section>
-        <h2>Example Form With Vuejs</h2>
         {{ include('partials/alerts.twig')}}
+
+        <p>
+            Choose an option and delete the option that does not suit you.
+        </p>
+
+        <h2>Example form without vue.js</h2>
+        <div class="form">
+            <form action="store" method="POST" id="lead" data-abide>
+                <label>
+                    Names
+                    <input type="text" name="name" required>
+                </label>
+
+                <label>
+                    Email
+                    <input type="email" name="email" required>
+                </label>
+                <button class="button primary" type="submit">Enviar</button>
+            </form>
+        </div>
+
+        <h2>Example form with Vuejs</h2>
         <app-form></app-form>
     </section>
 {% endblock %}
