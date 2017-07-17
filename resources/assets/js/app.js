@@ -1,7 +1,3 @@
-/**
- * We'll load Foundation, uncomment if you need it's
- */
-
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
 
@@ -14,14 +10,25 @@ import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate);
 Vue.component('app-form', require('./components/Form.vue'));
 const app = new Vue({
-   el: '#app'
+    el: '#app'
 });
 
 /**
- * Init foundation, uncomment if you need it's
+ * We'll load jQuery and the Foundation framework which provides support
+ * for JavaScript based foundation features such as modals and tabs. This
+ * code may be modified to fit the specific needs of your application.
+ */
+try {
+    window.$ = window.jQuery = require('jquery');
+    require('foundation-sites/dist/js/plugins/foundation.core.js');
+    require('foundation-sites/dist/js/plugins/foundation.util.mediaQuery.js');
+} catch (e) {}
+
+
+/**
+ * Init foundation
  */
 
-import 'foundation-sites/dist/js/foundation.js';
 $(document).foundation();
 
 /**
