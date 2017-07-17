@@ -1,16 +1,9 @@
 let mix = require('laravel-mix');
 
-/**
- * We'll load jQuery globaly, uncomment if you need it's
- */
-
-mix.autoload({
-    jquery: ['$', 'window.jQuery']
-});
-
 mix.setPublicPath('./');
-mix.js('resources/assets/js/app.js', 'js/app.min.js')
-    .sass('resources/assets/sass/app.scss', 'css/app.min.css')
+
+mix.sass('resources/assets/sass/app.scss', 'css/app.min.css')
+    .js('resources/assets/js/app.js', 'js/app.min.js')
     .options({
         processCssUrls: false,
     })
@@ -18,9 +11,10 @@ mix.js('resources/assets/js/app.js', 'js/app.min.js')
         proxy: 'mini-framework.dev',
         files: [
             './resources/views/**/*.twig',
-            './js/**/*',
-            './css/**/*',
-        ]
+            './css/**/*.css',
+            './js/**/*.js',
+        ],
+        injectChanges: true,
     })
 
 
