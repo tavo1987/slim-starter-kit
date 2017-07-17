@@ -1,0 +1,39 @@
+/*
+    =====================================================
+        MIXINS
+    =====================================================
+*/
+
+/*
+Example:
+.foo {
+    color: red;
+    @include media-query('mobile') {
+        color: blue;
+    }
+}*/
+
+@mixin media-query($breakpoint) {
+    @if map-has-key($breakpoints-sp, $breakpoint) {
+        @media (min-width: map-get($breakpoints-sp, $breakpoint)) {
+            @content;
+        }
+    }
+   @else {
+        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints-sp` map.";
+    }
+}
+
+
+//mixin para con fallback converit pixeles a rem en las fuentes
+@mixin fontSize($size:$font-size){
+    font-size: $size * 1px;
+    font-size: ($size / $font-size) * 1rem;
+}
+
+@mixin verticalAlign() {
+    position: absolute;
+    top: 50%;
+    transform:translateY(-50%);
+}

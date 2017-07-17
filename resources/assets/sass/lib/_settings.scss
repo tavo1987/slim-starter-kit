@@ -1,15 +1,22 @@
+/*
+    =================================================================
+        $SETTINGS
+    =================================================================
+*/
 
-
-
-
-/*------------------------------------------------------------------
-    $SETTINGS
---------------------------------------------------------------------*/
+// BREAKPOINTS
+$breakpoints-sp :(
+   'mobile'     : 28.75em,
+   'smartphone' : 40em,
+   'tablet'     : 48em,
+   'desktop'    : 64em,
+   'hd'         : 100em,
+)!default;
 
 // $variables generales de colores
 
 $base-color         :#2199e8; //celeste
-$second-color       : rgba(#726F7A,80);
+$secondary-color       : rgba(#726F7A,80);
 $complementary-color: #f7f7f7;
 
 //backgrouund colors
@@ -33,22 +40,14 @@ $title-color:     #343436;
 $link-color:      #2199e8;
 $link-color-hover: darken($link-color,10);
 
-//breakpoints
-$mobile:28.75em;//460px
-$tablet:48em;//768px
-$desktop:60em;//1000px
-$full-hd:75em;//1200pc
-
 
 // $Fuente
 $font-size:     16;
-$font-family:   'Lato', sans-serif !important;
+$font-family:   'Open Sans', sans-serif !important;
 
 
 // $ancho maximo
 $max-width:     62.5rem; //1000px
-
-//Links
 
 //border radius
 $radius:        3px;

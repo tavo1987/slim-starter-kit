@@ -7,15 +7,18 @@
  a compilar en el CSS definitivo: /css/style.css.
 */
 
+//Foundation
+@import "foundation/settings";
+@import "node_modules/foundation-sites/scss/foundation";
+@import "foundation/modules";
+
 //librerias
 @import "lib/settings";
 @import "lib/mixins";
 @import "lib/placeholders";
 
 
-
 //base del sitio web
-@import "base/foundation";
 @import "base/sitio";
 
 //modulos
@@ -28,3 +31,4 @@
 //theme
 @import "theme/header";
 @import "theme/thanks";
+
