@@ -30,9 +30,10 @@
     "require": {
         "php": ">=5.6.4",
         "illuminate/database": "^5.2",
-        "vlucas/phpdotenv": "^2.2",
         "sendgrid/sendgrid": "~5.1",
+        "symfony/var-dumper": "^3.3",
         "twig/twig": "~1.0",
+        "vlucas/phpdotenv": "^2.2",
         "vlucas/valitron": "^1.3"
     },
 
