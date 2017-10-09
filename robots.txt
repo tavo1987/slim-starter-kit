@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /app/
+Disallow: /bootstrap/
+Disallow: /config/
+Disallow: /core/
+Disallow: /resources/
+Disallow: /vendor/
+Disallow: /.env
+Disallow: /.htaccess
+Disallow: /mix-manifest.json
