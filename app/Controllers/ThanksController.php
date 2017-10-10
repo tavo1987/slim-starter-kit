@@ -4,8 +4,9 @@ namespace App\Controllers;
 
 class ThanksController
 {
-    public function index()
+    public function index($response, $name)
     {
-        return view('thanks.twig');
+        $name = ucfirst($name);
+        return view('thanks.twig', compact('name'));
     }
 }

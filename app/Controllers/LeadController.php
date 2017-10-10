@@ -32,7 +32,6 @@ class LeadController extends BaseController
         'email' => 'Email',
     ];
 
-
     public function store()
     {
         $errors = $this->validate($_POST, $this->rules, $this->labels);
@@ -51,10 +50,20 @@ class LeadController extends BaseController
         if (!$lead->isRegistered($request->email)) {
             $lead->save();
         }
-
         Email::send($lead->email, getenv('LEAD_EMAIL_SUBJECT'), 'lead', $lead);
         Email::send(getenv('ADMIN_EMAIL'), getenv('ADMIN_EMAIL_SUBJECT'), 'admin', $lead);
 
-        redirect('thanks');
+        redirect("thanks/{$lead->name}");
+    }
+
+    /**
+     * Route params example
+     * if the path has parameters, the $ response parameter is required as the first method argument
+     * @param $response
+     * @param $name
+     */
+    public function search($response, $name)
+    {
+        dd($name);
     }
 }

@@ -6,6 +6,7 @@ function view($template, $vars = [])
 {
     $loader = new Twig_Loader_Filesystem('resources/views/');
     $twig = new Twig_Environment($loader);
+    $twig->addGlobal('siteUrl', getenv('SITE_URL'));
     echo $twig->render($template, $vars);
 }
 
@@ -56,4 +57,9 @@ function collection($data)
 {
     $collection = new Collection($data);
     return $collection;
+}
+
+function parseUrl($url)
+{
+    return explode('/', filter_var(trim( $url , '/'), FILTER_SANITIZE_URL));
 }
