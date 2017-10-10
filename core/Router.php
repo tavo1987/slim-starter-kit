@@ -37,6 +37,13 @@ class Router
             }
         }
 
+        $projectPath = getenv('PROJECT_PATH');
+        if ($projectPath != '') {
+            $this->routes['/'.$projectPath.$uri]  = $handler;
+            $this->methods['/'.$projectPath.$uri] = $methods;
+            return;
+        }
+
         $this->routes[$uri]  = $handler;
         $this->methods[$uri] = $methods;
     }
