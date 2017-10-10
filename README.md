@@ -9,17 +9,14 @@ Mini framework para la creación rápida de landing pages en las que se necesite
  - Guardar en base de datos a través de eloquent
  - Enviar emails a través del api de sendgrid v3
  - Laravel mix
- - Sistema de rutas
+ - Sistema de rutas con soporte para pasar parámetros
  - Controladores
  - Entidadades o Modelos mediante usando eloquent
  - Vistas usando el motor de plantillas de twig
  - Templates bases para enviar emails
  - url amigables mediante `.htaccess`
- - Helper de redirecciones
- - Helper para convertir un array  a una colección mediante laravel collections
- - Helper para limpiar inputs
- - Helper para mostrar vistas
  - Fácil instalación mediante composer
+ - Simfony var dumper dd($var), dump($var)
 
 ## Herramientas y Tecnologías utilizadas
 
@@ -37,6 +34,16 @@ Mini framework para la creación rápida de landing pages en las que se necesite
 * [Whoops](https://github.com/filp/whoops)
 * [Laravel Collections](https://laravel.com/docs/5.3/eloquent-collections)
 * [Web font loader](https://github.com/typekit/webfontloader)
+
+## Helpers
+    * dd()
+    * dump()
+    * collect()
+    * view()
+    * clean_input()
+    * cleanRequest()
+    * redirect()
+    * parseUrl()
 
 ## Requerimientos
 - ` "php": ">=5.6.4"`
