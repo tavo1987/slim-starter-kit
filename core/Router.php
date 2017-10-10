@@ -19,11 +19,33 @@ class Router
         $this->path = $path;
     }
 
-    public function addRoute($uri, $handler, $methods = ['GET'])
+    public function addRoute($uri , $handler, $methods = ['GET'])
     {
-        $this->routes[$uri]      = $handler;
-        $this->methods[$uri]     = $methods;
+        if ($this->hasParameters($uri)) {
+            $parseRequestUri = parseUrl($_SERVER['REQUEST_URI']);
+            $parseRegisterUri = parseUrl($uri);
+
+            // Checking if parameters exists on request uri
+            if (count($parseRequestUri) > 1) {
+                //Update registered route
+                $uri = "/{$parseRegisterUri[0]}/{$parseRequestUri[1]}";
+
+                //Save params
+                if (is_array($handler))  {
+                    $handler[] = $parseRequestUri[1];
+                }
+            }
+        }
+
+        $this->routes[$uri]  = $handler;
+        $this->methods[$uri] = $methods;
     }
+
+    public function hasParameters($uri)
+    {
+        return strpos($uri, '{') !== false || strpos($uri, '}') !== false;
+    }
+
 
     public function getResponse()
     {
@@ -34,7 +56,6 @@ class Router
         if (!in_array($_SERVER['REQUEST_METHOD'], $this->methods[$this->path])) {
             throw new MethodNotAllowedException;
         }
-
         return $this->routes[$this->path];
     }
 }

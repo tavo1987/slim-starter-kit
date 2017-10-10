@@ -46,7 +46,7 @@ class App
         $path = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
         $router->setPath($path);
 
-        try {
+        try{
             $response = $router->getResponse();
         } catch (RouteNotFoundException $e) {
             return view('404.twig');
@@ -64,7 +64,11 @@ class App
                 $callable[0] = new $callable[0];
             }
 
-            return call_user_func($callable, $response);
+            // Checking if parameters exist
+            $parameters = isset($callable[2]) ? $callable[2] : [];
+            unset($callable['2']);
+
+            return call_user_func_array($callable, [$response, $parameters]);
         }
 
         return $callable($response);
