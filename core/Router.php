@@ -21,9 +21,18 @@ class Router
 
     public function addRoute($uri , $handler, $methods = ['GET'])
     {
+        $projectPath = getenv('PROJECT_PATH');
+
         if ($this->hasParameters($uri)) {
             $parseRequestUri = parseUrl($_SERVER['REQUEST_URI']);
             $parseRegisterUri = parseUrl($uri);
+
+            //Delete project path from request uri
+            if ($projectPath !== '') {
+                $projectPathCollection = parseUrl($projectPath);
+                $collectionUri = collect($parseRequestUri);
+                $parseRequestUri = $collectionUri->diff($projectPathCollection)->values()->toArray();
+            }
 
             // Checking if parameters exists on request uri
             if (count($parseRequestUri) > 1) {
@@ -37,7 +46,6 @@ class Router
             }
         }
 
-        $projectPath = getenv('PROJECT_PATH');
         if ($projectPath != '') {
             $this->routes['/'.$projectPath.$uri]  = $handler;
             $this->methods['/'.$projectPath.$uri] = $methods;
@@ -46,6 +54,7 @@ class Router
 
         $this->routes[$uri]  = $handler;
         $this->methods[$uri] = $methods;
+
     }
 
     public function hasParameters($uri)
