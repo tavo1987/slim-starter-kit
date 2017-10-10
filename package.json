@@ -1,6 +1,6 @@
 {
   "name": "mini-framework",
-  "version": "3.1.0",
+  "version": "4.1.0",
   "description": "mini framework for landings pages",
   "main": "index.js",
   "repository": "git@github.com:tavo1987/mini-framework.git",
