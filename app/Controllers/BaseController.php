@@ -2,11 +2,22 @@
 
 namespace  App\Controllers;
 
+use Interop\Container\ContainerInterface;
+use Slim\Views\Twig;
 use Valitron\Validator as Valitron;
 
 class BaseController
 {
-    /**
+	protected $container;
+	protected $view;
+
+	public function __construct(ContainerInterface $container)
+	{
+		$this->container = $container;
+		$this->view = $this->container['view'];
+	}
+
+	/**
      * @param $data
      * @param $rules
      * @param $labels
