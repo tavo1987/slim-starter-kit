@@ -5,8 +5,6 @@
 
 {% block content %}
     <section>
-        {{ include('partials/alerts.twig')}}
-
         <p>
             Choose an option and delete the option that does not suit you.
         </p>
@@ -15,13 +13,15 @@
         <div class="form">
             <form action="store" method="POST" id="lead" data-abide>
                 <label>
-                    Names
-                    <input type="text" name="name" required>
+                    Names <br>
+                    <span>{{ errors.name | first }}</span>
+                    <input type="text" name="name" value="{{ old.name }}">
                 </label>
 
                 <label>
-                    Email
-                    <input type="email" name="email" required>
+                    Email <br>
+                    <span>{{ errors.email | first }}</span>
+                    <input type="text" name="email" {{ old.email }}>
                 </label>
                 <button class="button primary" type="submit">Enviar</button>
             </form>
