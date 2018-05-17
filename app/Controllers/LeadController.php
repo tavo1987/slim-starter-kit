@@ -3,36 +3,21 @@
 namespace App\Controllers;
 
 use App\Entities\Lead;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 class LeadController extends BaseController
 {
-    /**
-     * Validations rules to $_POST data
-     * @var [array]
-     */
-    protected $rules = [
-            'required' => [
-                ['name'],
-                ['email'],
-            ],
-            'lengthMin' => [
-                ['name', 3],
-            ],
-
-            'email' => 'email',
-        ];
-
-    /**
-     * Input labels
-     * @var array
-     */
-    protected $labels = [
-        'name'  => 'Name',
-        'email' => 'Email',
-    ];
-
-    public function store($request, $response)
+    public function store(Request $request, Response $response)
     {
+    	$this->container->validator->validate($request, [
+    		'name' => ['required'],
+    		'email' => ['required', 'email'],
+	    ]);
+
+    	if ($this->container->validator->failed()) {
+			return $response->withRedirect($this->container->router->pathFor('home'), 302);
+	    }
 
         $lead            = new Lead();
         $lead->name      = $request->getParam('name');
@@ -46,6 +31,6 @@ class LeadController extends BaseController
         sendEmail($lead->email, $lead->name, getenv('LEAD_EMAIL_SUBJECT'), 'lead', $lead);
         sendEmail(getenv('ADMIN_EMAIL'), 'Edwin Ramírez', getenv('LEAD_EMAIL_SUBJECT'), 'admin', $lead);
 
-	    return $response->withRedirect('/thanks', 301);
+	    return $response->withRedirect($this->container->router->pathFor('thanks'), 201);
     }
 }
