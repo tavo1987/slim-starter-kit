@@ -2,6 +2,7 @@
 
 use App\Validation\Validator;
 use Slim\App;
+use Slim\Csrf\Guard;
 use Slim\Http\Uri;
 use Slim\Middleware\Session;
 use Slim\Views\Twig;
@@ -67,6 +68,27 @@ $app = new App([
 $container = $app->getContainer();
 
 /**
+ * Auth support
+ * @param $container
+ *
+ * @return \App\Auth\Auth
+ */
+$container['auth'] = function ($container) {
+	return new \App\Auth\Auth($container);
+};
+
+/**
+ * Flash messages
+ *
+ * @param $container
+ *
+ * @return \Slim\Flash\Messages
+ */
+$container['flash'] = function ($container) {
+	return new \Slim\Flash\Messages;
+};
+
+/**
  * Twig configuration
  * @param $container
  *
@@ -81,6 +103,13 @@ $container['view'] = function ($container) {
 	$uri = Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
 	$view->addExtension(new \Slim\Views\TwigExtension($router, $uri));
 
+	$view->getEnvironment()->addGlobal('auth', [
+		'check' => $container->auth->check(),
+		'user' => $container->auth->user(),
+	]);
+
+	$view->getEnvironment()->addGlobal('flash', $container->flash);
+
 	return $view;
 };
 
@@ -88,7 +117,6 @@ $container['view'] = function ($container) {
  * Eloquent configuration
  */
 require_once __DIR__ . '/../config/database.php';
-
 
 /**
  * @param $container
@@ -107,11 +135,20 @@ $container['session'] = function () {
 };
 
 /**
+ * CSRF support
+ */
+$container['csrf'] = function () {
+	return new Guard;
+};
+
+/**
  * Middleware
  */
 $app->add(new WhoopsMiddleware);
 $app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
 $app->add(new \App\Middleware\OldInputMiddleware($container));
+$app->add(new \App\Middleware\CsrfViewMiddleware($container));
+$app->add($container->csrf);
 $app->add(new Session([
 	'name' => getenv('APP_NAME'),
 	'autorefresh' => true,
