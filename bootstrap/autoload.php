@@ -3,11 +3,16 @@
 use Slim\App;
 use Slim\Http\Uri;
 use Slim\Views\Twig;
-use Valitron\Validator as V;
 use Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware;
 
+/**
+ * Composer autoload
+ */
 require_once __DIR__ . '/../vendor/autoload.php';
 
+/**
+ * Dot env configuration
+ */
 try {
 	(new Dotenv\Dotenv(__DIR__ . '/../'))->load();
 } catch (Dotenv\Exception\InvalidPathException $e) {
@@ -15,10 +20,9 @@ try {
 }
 
 /**
- * Valitron Library
+ * Configuration default time zone
  */
-//V::langDir(__DIR__.'/../resources/lang/valitron'); // always set langDir before lang.
-//V::lang(getenv('VALIDATOR_LANG'));
+date_default_timezone_set(getenv('SET_TIME_LOCATE'));
 
 /**
  * App Init
@@ -26,6 +30,16 @@ try {
 $app = new App([
 	'settings' => [
 		'displayErrorDetails' => getenv('APP_DEBUG') === 'true',
+		'db' => [
+			'driver' => 'mysql',
+			'host' => getenv('DB_HOST'),
+			'database' => getenv('DB_DATABASE'),
+			'username' => getenv('DB_USERNAME'),
+			'password' => getenv('DB_PASSWORD'),
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		],
 		'debug' => getenv('APP_DEBUG') === 'true',
 		'whoops.editor' => 'sublime',
 		'app' => [
@@ -37,7 +51,15 @@ $app = new App([
 	],
 ]);
 
+/**
+ * Get container
+ */
 $container = $app->getContainer();
+
+/**
+ * Eloquent configuration
+ */
+require_once __DIR__ . '/../config/database.php';
 
 /**
  * Twig configuration
@@ -75,11 +97,6 @@ $container['notFoundHandler'] = function ($container) {
  * WhoopsMiddleware
  */
 $app->add(new WhoopsMiddleware);
-
-/**
- * Eloquent configuration
- */
-require_once __DIR__ . '/../config/database.php';
 
 /*
  * Routes
