@@ -35,6 +35,6 @@ function sendEmail($to, $name, $subject, $template, $lead)
 	try{
 		$mailer->send($message);
 	}catch (Exception $e) {
-		dd($e->getMessage());
+		throw new $e($e->getMessage());
 	}
 }
