@@ -8,11 +8,4 @@ class HomeController extends BaseController
     {
 	    return $this->view->render($response, 'home.twig');
     }
-
-    public function test($request, $response, $args)
-    {
-    	$id = $args['id'];
-
-	    return $this->view->render($response, 'home.twig');
-    }
 }
