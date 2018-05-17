@@ -3,8 +3,6 @@
 namespace App\Controllers;
 
 use App\Entities\Lead;
-use Core\Controllers\EmailController  as Email;
-use Symfony\Component\VarDumper\Dumper\DataDumperInterface;
 
 class LeadController extends BaseController
 {
@@ -35,11 +33,6 @@ class LeadController extends BaseController
 
     public function store($request, $response)
     {
-        //$errors = $this->validate($_POST, $this->rules, $this->labels);
-
-       /* if ($errors) {
-            return view('home.twig', compact('errors'));
-        }*/
 
         $lead            = new Lead();
         $lead->name      = $request->getParam('name');
@@ -50,17 +43,9 @@ class LeadController extends BaseController
             $lead->save();
         }
 
-	    return $response->withRedirect('/thanks', 301);
-    }
+        sendEmail($lead->email, $lead->name, getenv('LEAD_EMAIL_SUBJECT'), 'lead', $lead);
+        sendEmail(getenv('ADMIN_EMAIL'), 'Edwin Ramírez', getenv('LEAD_EMAIL_SUBJECT'), 'admin', $lead);
 
-    /**
-     * Route params example
-     * if the path has parameters, the $ response parameter is required as the first method argument
-     * @param $response
-     * @param $name
-     */
-    public function search($response, $name)
-    {
-        dd($name);
+	    return $response->withRedirect('/thanks', 301);
     }
 }
