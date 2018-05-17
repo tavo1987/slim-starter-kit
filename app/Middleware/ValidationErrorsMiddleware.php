@@ -2,23 +2,12 @@
 
 namespace App\Middleware;
 
-use Interop\Container\ContainerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
 
-class ValidationErrorsMiddleware
+class ValidationErrorsMiddleware extends Middleware
 {
-	/**
-	 * @var ContainerInterface
-	 */
-	protected $container;
-
-	public function __construct(ContainerInterface $container)
-	{
-		$this->container = $container;
-	}
-
 	public function __invoke(Request $request, Response $response, callable  $next)
 	{
 		if ($this->container->session->exists('errors')) {
