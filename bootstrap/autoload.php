@@ -1,9 +1,13 @@
 <?php
 
+use App\Validation\Validator;
 use Slim\App;
 use Slim\Http\Uri;
+use Slim\Middleware\Session;
 use Slim\Views\Twig;
+use SlimSession\Helper;
 use Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware;
+use Valitron\Validator as V;
 
 /**
  * Composer autoload
@@ -20,7 +24,13 @@ try {
 }
 
 /**
- * Configuration default time zone
+ * Valitron Library
+ */
+V::langDir(__DIR__.'/../resources/lang/valitron'); // always set langDir before lang.
+V::lang(getenv('VALIDATOR_LANG'));
+
+/**
+ * Configuration to default time zone
  */
 date_default_timezone_set(getenv('SET_TIME_LOCATE'));
 
@@ -57,11 +67,6 @@ $app = new App([
 $container = $app->getContainer();
 
 /**
- * Eloquent configuration
- */
-require_once __DIR__ . '/../config/database.php';
-
-/**
  * Twig configuration
  * @param $container
  *
@@ -80,23 +85,38 @@ $container['view'] = function ($container) {
 };
 
 /**
- * Custom notFoundHandler for 404
- *
+ * Eloquent configuration
+ */
+require_once __DIR__ . '/../config/database.php';
+
+
+/**
  * @param $container
  *
- * @return Closure
+ * @return Validator
  */
-$container['notFoundHandler'] = function ($container) {
-	return function ($request, $response) use ($container) {
-		$container->view->render($response, '404.twig');
-		return $response->withStatus(404);
-	};
+$container['validator'] = function ($container) {
+	return new Validator($container);
 };
 
 /**
- * WhoopsMiddleware
+ * Registering Globally Session Helpers
+ */
+$container['session'] = function () {
+	return new Helper;
+};
+
+/**
+ * Middleware
  */
 $app->add(new WhoopsMiddleware);
+$app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
+$app->add(new \App\Middleware\OldInputMiddleware($container));
+$app->add(new Session([
+	'name' => getenv('APP_NAME'),
+	'autorefresh' => true,
+	'lifetime' => '1 hour'
+]));
 
 /*
  * Routes
