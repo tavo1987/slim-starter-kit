@@ -12,6 +12,7 @@
         <h2>Example form without vue.js</h2>
         <div class="form">
             <form action="store" method="POST" id="lead" data-abide>
+                {{ csrf.field | raw }}
                 <label>
                     Names <br>
                     <span>{{ errors.name | first }}</span>
