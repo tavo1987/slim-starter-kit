@@ -31,6 +31,6 @@ class LeadController extends BaseController
         sendEmail($lead->email, $lead->name, getenv('LEAD_EMAIL_SUBJECT'), 'lead', $lead);
         sendEmail(getenv('ADMIN_EMAIL'), 'Edwin Ramírez', getenv('LEAD_EMAIL_SUBJECT'), 'admin', $lead);
 
-	    return $response->withRedirect($this->container->router->pathFor('thanks'), 201);
+	    return $response->withRedirect($this->container->router->pathFor('thanks'));
     }
 }
