@@ -10,12 +10,12 @@ class LeadController extends BaseController
 {
     public function store(Request $request, Response $response)
     {
-    	$this->container->validator->validate($request, [
+    	$this->validator->validate($request, [
     		'name' => ['required'],
     		'email' => ['required', 'email'],
 	    ]);
 
-    	if ($this->container->validator->failed()) {
+    	if ($this->validator->failed()) {
 			return $response->withRedirect($this->container->router->pathFor('home'), 302);
 	    }
 
@@ -29,8 +29,8 @@ class LeadController extends BaseController
         }
 
         sendEmail($lead->email, $lead->name, getenv('LEAD_EMAIL_SUBJECT'), 'lead', $lead);
-        sendEmail(getenv('ADMIN_EMAIL'), 'Edwin Ramírez', getenv('LEAD_EMAIL_SUBJECT'), 'admin', $lead);
+        sendEmail(getenv('ADMIN_EMAIL'), 'Edwin Ramírez', getenv('ADMIN_EMAIL_SUBJECT'), 'admin', $lead);
 
-	    return $response->withRedirect($this->container->router->pathFor('thanks'));
+	    return $response->withRedirect($this->router->pathFor('thanks'));
     }
 }
