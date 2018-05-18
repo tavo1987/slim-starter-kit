@@ -78,6 +78,19 @@ $container['flash'] = function () {
 	return new \Slim\Flash\Messages;
 };
 
+/**
+ * Custom Not Found handler
+ *
+ * @param $container
+ *
+ * @return Closure
+ */
+$container['notFoundHandler'] = function ($container) {
+	return function ($request, $response) use ($container) {
+		$container->view->render($response, '404.twig');
+		return $response->withStatus(404);
+	};
+};
 
 /**
  * Eloquent configuration
