@@ -13,10 +13,10 @@ $container['view'] = function ($container) {
 	$uri = Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
 	$view->addExtension(new \Slim\Views\TwigExtension($router, $uri));
 
-	/*$view->getEnvironment()->addGlobal('auth', [
+	$view->getEnvironment()->addGlobal('auth', [
 		'check' => $container->auth->check(),
 		'user' => $container->auth->user(),
-	]);*/
+	]);
 
 	$view->getEnvironment()->addGlobal('flash', $container->flash);
 
