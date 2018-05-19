@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\Admin\LeadsReportController;
+use App\Controllers\Auth\AuthController;
 use App\Controllers\Auth\PasswordController;
 
 $app->get('/reports', LeadsReportController::class . ':index')->setName('reports');
