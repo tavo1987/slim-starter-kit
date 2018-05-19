@@ -22,7 +22,6 @@ class LeadController extends BaseController
         $lead            = new Lead();
         $lead->name      = $request->getParam('name');
         $lead->email     = $request->getParam('email');
-        $lead->date      = date('Y-m-d H:i:s');
 
         if (!$lead->isRegistered($lead->email)) {
             $lead->save();
