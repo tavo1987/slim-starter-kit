@@ -1,6 +1,8 @@
 <?php
 
-$config = $container['settings']['bd'];
+require_once __DIR__.'/bootstrap/autoload.php';
+
+$config = $app->getContainer()['settings']['db'];
 
 return [
 	'paths' => [
