@@ -11,8 +11,9 @@ class LeadController extends BaseController
     public function store(Request $request, Response $response)
     {
     	$this->validator->validate($request, [
-    		'name' => ['required'],
-    		'email' => ['required', 'email'],
+		    'name' => 'required',
+		    'cedula' => ['required', 'cedula'],
+		    'email' => ['required', 'email'],
 	    ]);
 
     	if ($this->validator->failed()) {
@@ -21,6 +22,7 @@ class LeadController extends BaseController
 
         $lead            = new Lead();
         $lead->name      = $request->getParam('name');
+        $lead->cedula      = $request->getParam('cedula');
         $lead->email     = $request->getParam('email');
 
         if (!$lead->isRegistered($lead->email)) {

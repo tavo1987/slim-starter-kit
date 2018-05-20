@@ -20,9 +20,15 @@
                 </label>
 
                 <label>
+                    Cédula <br>
+                    <span>{{ errors.cedula | first }}</span>
+                    <input type="number" name="cedula" value="{{ old.cedula }}">
+                </label>
+
+                <label>
                     Email <br>
                     <span>{{ errors.email | first }}</span>
-                    <input type="text" name="email" {{ old.email }}>
+                    <input type="text" name="email" value="{{ old.email }}">
                 </label>
                 <button class="button primary" type="submit">Enviar</button>
             </form>

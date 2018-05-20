@@ -15,6 +15,7 @@ class CreateLeadsTable extends Migration
 		$this->schema->create('leads', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('name');
+			$table->string('cedula');
 			$table->string('email');
 			$table->timestamps();
 		});

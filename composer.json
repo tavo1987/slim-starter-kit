@@ -37,6 +37,7 @@
         "slim/slim": "~3.0",
         "slim/twig-view": "~2.4",
         "swiftmailer/swiftmailer": "~5.0",
+        "tavo1987/ec-validador-cedula-ruc": "^1.0",
         "vlucas/valitron": "^1.3"
     },
 
