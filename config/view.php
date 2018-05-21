@@ -12,13 +12,11 @@ $container['view'] = function ($container) {
 	$router = $container->get('router');
 	$uri = Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
 	$view->addExtension(new \Slim\Views\TwigExtension($router, $uri));
-
+	$view->getEnvironment()->addGlobal('siteUrl', getenv('SITE_URL'));
 	$view->getEnvironment()->addGlobal('auth', [
 		'check' => $container->auth->check(),
 		'user' => $container->auth->user(),
 	]);
-
 	$view->getEnvironment()->addGlobal('flash', $container->flash);
-
 	return $view;
 };
