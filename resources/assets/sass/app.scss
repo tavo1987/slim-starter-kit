@@ -1,34 +1,52 @@
 /*===============================================*\
-    $STYLE
+    MAINS SCSS FILE
 \*===============================================*/
 
-/*
- Aquí incluímos todos los módulos (archivos .scss) que se van
- a compilar en el CSS definitivo: /css/style.css.
-*/
+/**
+ * This injects Tailwind's base styles, which is a combination of
+ */
+@tailwind preflight;
+
+/**
+ * This injects any component classes registered by plugins.
+ */
+@tailwind components;
 
 //Foundation
-@import "foundation/settings";
-@import "node_modules/foundation-sites/scss/foundation";
-@import "foundation/modules";
+//@import "foundation/settings";
+//@import "node_modules/foundation-sites/scss/foundation";
+//@import "foundation/modules";
 
-//librerias
+/**
+ * Here you would add any of your custom component classes; stuff that you'd
+ * want loaded *before* the utilities so that the utilities could still
+ * override them.
+ *
+ */
+
+//libs
 @import "lib/settings";
 @import "lib/mixins";
-@import "lib/placeholders";
 
+//base Styles
+@import "base/site";
 
-//base del sitio web
-@import "base/sitio";
+//Layout
+@import "layout/header";
+@import "layout/thanks";
 
-//modulos
-@import "abstractions/buttons";
-@import "abstractions/pagination";
+/**
+ * This injects all of Tailwind's utility classes, generated based on your
+ * config file.
+ */
+@tailwind utilities;
 
-//elements
-@import "elements/forms";
-
-//theme
-@import "theme/header";
-@import "theme/thanks";
-
+/**
+ * Here you would add any custom utilities you need that don't come out of the
+ * box with Tailwind.
+ *
+ * Example :
+ *
+ * .bg-pattern-graph-paper { ... }
+ * .skew-45 { ... }
+ */
