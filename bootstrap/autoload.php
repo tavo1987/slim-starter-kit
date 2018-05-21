@@ -86,10 +86,7 @@ $container['flash'] = function () {
  * @return Closure
  */
 $container['notFoundHandler'] = function ($container) {
-	return function ($request, $response) use ($container) {
-		$container->view->render($response, '404.twig');
-		return $response->withStatus(404);
-	};
+	return new  \App\Handlers\NotFoundHandler($container->view);
 };
 
 /**
