@@ -11,7 +11,7 @@ class AuthController extends BaseController
     {
         $this->auth->logout();
 
-        return $response->withRedirect($this->router->pathFor('home'));
+        return $response->withRedirect($this->router->pathFor('auth.signin'));
     }
 
     public function getSignIn($request, $response)
@@ -40,7 +40,8 @@ class AuthController extends BaseController
             return $response->withRedirect($this->router->pathFor('auth.signin'));
         }
 
-        return $response->withRedirect($this->router->pathFor('reports'));
+	    $this->flash->addMessage('success', 'Welcome ' . $this->auth->user()->name);
+        return $response->withRedirect($this->router->pathFor('home'));
     }
 
     public function getSignUp($request, $response)
