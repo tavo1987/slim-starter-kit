@@ -2,11 +2,10 @@
 
 namespace App\Controllers;
 
-class ThanksController
+class ThanksController extends BaseController
 {
-    public function index($response, $name)
+    public function index($request, $response)
     {
-        $name = ucfirst($name);
-        return view('thanks.twig', compact('name'));
+        return $this->view->render($response, 'thanks.twig');
     }
 }

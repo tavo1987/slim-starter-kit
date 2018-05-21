@@ -1,13 +1,23 @@
-{% if errors %}
-    <div class="alert callout" data-closable>
-        <h5>Whoops!</h5>
-        <ul>
-            {% for error in errors %}
-                <li>{{error}}</li>
-            {% endfor %}
-        </ul>
-        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
-            <span aria-hidden="true">&times;</span>
-        </button>
+{% if flash.getMessage('success') %}
+    <div class="bg-green-lightest border-l-4 border-green p-4 mt-6 fixed pin-t pin-r" role="alert">
+        <div class="text-green">
+            {{ flash.getMessage('success') | first }}
+        </div>
+    </div>
+{% endif %}
+
+{% if flash.getMessage('info') %}
+    <div class="bg-blue-lightest border-l-4 border-blue p-4 mt-6 fixed pin-t pin-r" role="alert">
+        <div class="blue-dark">
+            {{ flash.getMessage('info') | first }}
+        </div>
+    </div>
+{% endif %}
+
+{% if flash.getMessage('error') %}
+    <div class="bg-red-lightest border-l-4 border-red p-4 mt-6 fixed pin-t pin-r" role="alert">
+        <div class="text-red">
+            {{ flash.getMessage('error') | first }}
+        </div>
     </div>
 {% endif %}

@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
-
-        <title>{% block title %}{{metas.meta_title}}{% endblock %}</title>
+        <title>{% block title %}Home{% endblock %}</title>
 
         <!--STYLES-->
-        <link rel="stylesheet" href="{{ siteUrl }}/css/app.min.css">
+        <link rel="stylesheet" href="{{ base_url() }}/public/css/app.min.css">
 
         <!--META TAGS-->
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -20,20 +19,28 @@
         <meta property="og:site_name" content="OG_SITE_NAME">
         <meta property="og:locale" content="OG_LOCATE">
     </head>
-    <body>
-
-        <header class="header large-collapse">
-            <h1>Header</h1>
+    <body class="bg-grey-lightest container">
+        <header class="text-center bg-white">
+            <h1 class="text-grey-darker mb-0 uppercase font-bold py-8">Slim Starter Kit</h1>
+            {% if auth.check %}
+                <ul class="list-reset flex bg-grey-lighter p-4">
+                    <li><a class="text-blue pr-4" href="{{ path_for('home') }}">Home</a></li>
+                    <li><a class="text-blue pr-4" href="{{ path_for('reports') }}">Reports</a></li>
+                    <li><a class="text-blue pr-4" href="{{ path_for('auth.password.change') }}">Change Password</a></li>
+                    <li class="ml-auto"><a class="text-grey-darker" href="{{ path_for('auth.signout') }}">Signout</a></li>
+                </ul>
+            {% endif %}
         </header><!-- ./END HEADER-->
 
-        <div id="app" class="container">
+        <div id="app" class="p-4">
+            {% include 'partials/alerts.twig' %}
             {% block content %}{% endblock %}
         </div><!-- ./END CONTAINER-->
 
-        <footer>
-            <h2>Footer</h2>
+        <footer class="py-4 text-center">
+            <small>Made with <span class="text-red">&#9829;</span> by Edwin Ramírez</small>
         </footer><!-- ./END FOOTER-->
 
-        <script src="{{ siteUrl }}/js/app.min.js"></script>
+        <script src="{{ base_url() }}/public/js/app.min.js"></script>
     </body>
 </html>

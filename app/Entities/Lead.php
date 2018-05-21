@@ -9,8 +9,6 @@ class Lead extends Model
 
     protected $table = 'leads';
 
-    public $timestamps = false;
-
     public function getFullNameAttribute($value)
     {
         return $this->attributes['name'];

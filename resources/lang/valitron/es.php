@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'required'      => "es oblogatorio",
+    'required'      => "es obligatorio",
     'equals'        => "debe ser igual a '%s'",
     'different'     => "debe ser diferente a '%s'",
     'accepted'      => "debe ser aceptado",
