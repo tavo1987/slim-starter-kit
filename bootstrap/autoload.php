@@ -83,7 +83,7 @@ $container['flash'] = function () {
  *
  * @param $container
  *
- * @return Closure
+ * @return \App\Handlers\NotFoundHandler
  */
 $container['notFoundHandler'] = function ($container) {
 	return new  \App\Handlers\NotFoundHandler($container->view);
