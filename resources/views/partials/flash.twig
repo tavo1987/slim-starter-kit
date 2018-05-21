@@ -1,11 +1,15 @@
 {% if flash.getMessage('info') %}
-    <div class="alert alert-info">
-        {{ flash.getMessage('info') | first }}
+    <div class="bg-blue-lightest border-l-4 border-blue p-4 mt-6 fixed pin-t pin-r" role="alert">
+        <div class="blue-dark">
+            {{ flash.getMessage('info') | first }}
+        </div>
     </div>
 {% endif %}
 
 {% if flash.getMessage('error') %}
-    <div class="alert alert-danger">
-        {{ flash.getMessage('error') | first }}
+    <div class="bg-red-lightest border-l-4 border-red p-4 mt-6 fixed pin-t pin-r" role="alert">
+        <div class="text-red">
+            {{ flash.getMessage('error') | first }}
+        </div>
     </div>
 {% endif %}

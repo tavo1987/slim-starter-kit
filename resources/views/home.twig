@@ -5,36 +5,51 @@
 
 {% block content %}
     <section>
-        <p>
-            Choose an option and delete the option that does not suit you.
-        </p>
-
-        <h2>Example form without vue.js</h2>
-        <div class="form">
-            <form action="{{ path_for('leads.store') }}" method="POST" id="lead">
-                {{ csrf.field | raw }}
-                <label>
-                    Names <br>
-                    <span>{{ errors.name | first }}</span>
-                    <input type="text" name="name" value="{{ old.name }}">
-                </label>
-
-                <label>
-                    Cédula <br>
-                    <span>{{ errors.cedula | first }}</span>
-                    <input type="number" name="cedula" value="{{ old.cedula }}">
-                </label>
-
-                <label>
-                    Email <br>
-                    <span>{{ errors.email | first }}</span>
-                    <input type="text" name="email" value="{{ old.email }}">
-                </label>
-                <button class="button primary" type="submit">Enviar</button>
-            </form>
-        </div>
-
-        <h2>Example form with Vuejs</h2>
-        <app-form></app-form>
+        <h2 class="mb-6 text-grey-dark text-center">Example form without vue.js</h2>
+        <form class="w-full max-w-md mx-auto" action="{{ path_for('leads.store') }}" method="POST" id="lead">
+            {{ csrf.field | raw }}
+            <div class="-mx-3 mb-6">
+                <div class="px-3 mb-4">
+                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="name">
+                        Name
+                    </label>
+                    <input name="name" value="{{ old.name }}"
+                           class="{{ errors.name ? ' border-red' : '' }} appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-1"
+                           type="text"
+                           id="name"
+                           placeholder="John Doe" >
+                    <span class="text-red-lighter text-sm">{{ errors.name | first }}</span>
+                </div>
+                <div class="px-3 mb-4">
+                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="cedula">
+                        Cédula
+                    </label>
+                    <input name="cedula"
+                           value="{{ old.cedula }}"
+                           class="{{ errors.cedula ? ' border-red' : '' }} appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-1"
+                           id="cedula"
+                           type="number"
+                           placeholder="17xxxxxxxxx" >
+                    <span class="text-red-lighter text-sm">{{ errors.cedula | first }}</span>
+                </div>
+                <div class="px-3 mb-4">
+                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="email">
+                        Email
+                    </label>
+                    <input name="email"
+                           value="{{ old.email }}"
+                           class="{{ errors.email ? ' border-red' : '' }} appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-1"
+                           id="email"
+                           type="email"
+                           placeholder="email@example.com" >
+                    <span class="text-red-lighter text-sm" >{{ errors.email | first }}</span>
+                </div>
+                <div class="px-3">
+                    <button  class="shadow bg-indigo hover:bg-indigo-light text-white font-bold py-3 px-6 rounded" type="submit">Enviar</button>
+                </div>
+            </div>
+        </form>
+        {#<h2>Example form with Vuejs</h2>#}
+        {#<app-form></app-form>#}
     </section>
 {% endblock %}
