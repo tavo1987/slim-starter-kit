@@ -21,6 +21,15 @@ class AuthController extends BaseController
 
     public function postSignIn($request, $response)
     {
+	    $validation = $this->validator->validate($request, [
+		    'email' => ['required'],
+		    'password' => ['required']
+	    ]);
+
+	    if ($validation->failed()) {
+		    return $response->withRedirect($this->router->pathFor('auth.signin'));
+	    }
+
         $auth = $this->auth->attempt(
             $request->getParam('email'),
             $request->getParam('password')
