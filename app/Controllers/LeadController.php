@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Lead;
+use App\Requests\LeadFormRequest;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -10,11 +11,7 @@ class LeadController extends BaseController
 {
     public function store(Request $request, Response $response)
     {
-    	$this->validator->validate($request, [
-		    'name' => 'required',
-		    'cedula' => ['required', 'cedula'],
-		    'email' => ['required', 'email'],
-	    ]);
+    	$this->validator->validate($request, LeadFormRequest::rules());
 
     	if ($this->validator->failed()) {
 			return $response->withRedirect($this->container->router->pathFor('home'), 302);
