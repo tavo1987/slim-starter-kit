@@ -1,48 +1,54 @@
 [![Packagist](https://img.shields.io/badge/Packagist-v4.0.0-orange.svg?style=flat-square)](https://packagist.org/packages/tavo1987/mini-framework)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://packagist.org/packages/tavo1987/mini-framework)
 
-# Mini framework para creación de landing pages
-Mini framework para la creación rápida de landing pages en las que se necesite implementar formularios.
+# Slim Starter Kit
+Este un kit de inicio rápido para desarrolar landings o pequeñas aplicaciones usando el framework Slim 3.0, 
+con una estructura muy parecida a Laravel. 
+
+    nota: Documentación en progreso
 
 ## Características
- - Validar formularios, tanto en frontend como el backend (Valitron)
- - Guardar en base de datos a través de eloquent
- - Enviar emails a través del api de sendgrid v3
+ - Validaciones
+ - Emails
  - Laravel mix
- - Sistema de rutas con soporte para pasar parámetros
+ - Migraciones
  - Controladores
- - Entidadades o Modelos mediante usando eloquent
+ - Entidadades o Modelos mediante el uso de Eloquent
  - Vistas usando el motor de plantillas de twig
  - Templates bases para enviar emails
- - url amigables mediante `.htaccess`
+ - url amigables
  - Fácil instalación mediante composer
- - Simfony var dumper dd($var), dump($var)
+ - Módulo Básico de Autenticación
+ - Middlewares
+ - Soporte para CSRF
+ - Sesiones
+ - Mensajes tipo flash
 
 ## Herramientas y Tecnologías utilizadas
 
-* [Php](http://php.net/manual/en/intro-whatis.php)
+* [Slim 3](https://www.slimframework.com/docs/)
 * [Sass](http://sass-lang.com/)
 * [Laravel mix](https://laravel.com/docs/5.4/mix)
 * [Vuejs](https://vuejs.org/)
 * [VeeValidate](VeeValidate)
 * [Foundation 6.4.1](http://foundation.zurb.com/sites/docs/)
+* [Tailwincs](https://tailwindcss.com/docs/what-is-tailwind/)
 * [Eloquent ORM](https://laravel.com/docs/5.3/eloquent)
 * [Twig](http://twig.sensiolabs.org/)
 * [Dotenv](https://github.com/vlucas/phpdotenv)
-* [Api SendGrid v3](https://github.com/sendgrid/sendgrid-php)
+* [Swift Maile](https://swiftmailer.symfony.com/)
 * [Valitron](https://github.com/vlucas/valitron)
 * [Whoops](https://github.com/filp/whoops)
 * [Laravel Collections](https://laravel.com/docs/5.3/eloquent-collections)
 * [Web font loader](https://github.com/typekit/webfontloader)
+* [Phinx](https://phinx.org/)
+* [Laravel migrations](https://laravel.com/docs/5.6/migrations)
 
 ## Helpers
     * dd()
     * dump()
-    * collect()
-    * view()
-    * clean_input()
-    * cleanRequest()
-    * redirect()
+    * collect()    
+    * SendEmail()    
     * parseUrl()
 
 ## Requerimientos
@@ -50,14 +56,11 @@ Mini framework para la creación rápida de landing pages en las que se necesite
 
 ## Instalación y Configuración
 1. Ejecutar el siguiente comando para crear el proyecto:
-    - `composer create-project tavo1987/mini-framework project-name`
+    - `composer create-project tavo1987/slim-starter-kit project-name`
 2. Crear base de datos para guardar datos del formulario
-3. Crear la tabla `leads` en base de datos con los siguientes campos:
-    * id - `primary key` auto increment
-    * name - `varchar`
-    * email - `varchar`
-    * date - `datetime`
-4. Configurar los datos correctos en el archivo `.env`
+3. Configurar los datos correctos en el archivo `.env`
+4. Ejecutar el siguiente comando:
+    - `vendor/bin/phinx migrate`
 5. Seleccionar el idioma de los mensajes de valitron mediante la variable `VALITRON_LANG`
     este puede tener los siguiente valores `en` or `es` por defecto esta en inglés
 6. Listo! eso es todo
@@ -131,6 +134,7 @@ WebFont.load({
 De esta menera mejoramos el tiempo de carga, mas información en [web font loader](https://github.com/typekit/webfontloader)
 
     nota: Recordar actualizar la fuente en el archivo de configuración sass `resources/assets/sass/lib/_settings.scss`
+    
 
 ## Vulnerabilidades de Seguridad o Errores
 
