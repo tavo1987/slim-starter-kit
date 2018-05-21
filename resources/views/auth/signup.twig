@@ -1,0 +1,41 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <form class="w-full max-w-md mx-auto" action="{{ path_for('auth.signup') }}" method="post" autocomplete="off">
+        <h2 class="mb-4">SingUp</h2>
+        <div class="mb-4">
+            <label for="email" class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">Email</label>
+            <input type="email"
+                   name="email"
+                   id="email"
+                   placeholder="you@domain.com"
+                   class="{{ errors.email ? ' border-red' : '' }} appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-1"
+                   value="{{ old.email }}">
+            {% if errors.email %}
+                <span class="text-red-lighter text-sm">{{ errors.email | first }}</span>
+            {% endif %}
+        </div>
+        <div class="mb-4">
+            <label for="name" class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">Name</label>
+            <input type="text"
+                   name="name" id="name"
+                   class="{{ errors.name ? ' border-red' : '' }} appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-1"
+                   value="{{ old.name }}">
+            {% if errors.name %}
+                <span class="text-red-lighter text-sm">{{ errors.name | first }}</span>
+            {% endif %}
+        </div>
+        <div class="mb-4">
+            <label for="password" class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">Password</label>
+            <input type="password"
+                   name="password"
+                   class="{{ errors.password ? ' border-red' : '' }} appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-1"
+                   id="password">
+            {% if errors.password %}
+                <span class="text-red-lighter text-sm">{{ errors.password | first }}</span>
+            {% endif %}
+        </div>
+        <button type="submit" class="shadow bg-indigo hover:bg-indigo-light text-white font-bold py-3 px-6 rounded">Sign up</button>
+        {{ csrf.field | raw }}
+    </form>
+{% endblock %}

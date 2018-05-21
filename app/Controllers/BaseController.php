@@ -2,26 +2,39 @@
 
 namespace  App\Controllers;
 
-use Valitron\Validator as Valitron;
+use App\Auth\Auth;
+use App\Validation\Validator;
+use Illuminate\Database\DatabaseManager;
+use Interop\Container\ContainerInterface;
+use Slim\Flash\Messages;
+use Slim\Router;
+use Slim\Views\Twig;
+use SlimSession\Helper;
 
+/**
+ * IDE Support for Dynamic properties
+ *
+ * @property  DatabaseManager $db;
+ * @property Twig $view
+ * @property Router $router
+ * @property Messages $flash
+ * @property Helper $session
+ * @property Auth $auth
+ * @property Validator $validator
+ */
 class BaseController
 {
-    /**
-     * @param $data
-     * @param $rules
-     * @param $labels
-     * @return array|bool
-     */
-    public function validate($data, $rules, $labels)
-    {
-        $valitron = new Valitron($data);
-        $valitron->rules($rules);
-        $valitron->labels($labels);
+	protected $container;
 
-        if (!$valitron->validate()) {
-            $collection = collection($valitron->errors());
-            return $collection->flatten()->all();
-        }
-        return false;
-    }
+	public function __construct(ContainerInterface $container)
+	{
+		$this->container = $container;
+	}
+
+	public function __get($property)
+	{
+		if ($this->container->{$property}) {
+			return $this->container->{$property};
+		}
+	}
 }

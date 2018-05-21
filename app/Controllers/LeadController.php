@@ -3,67 +3,32 @@
 namespace App\Controllers;
 
 use App\Entities\Lead;
-use Core\Controllers\EmailController  as Email;
+use App\Requests\LeadFormRequest;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 class LeadController extends BaseController
 {
-    /**
-     * Validations rules to $_POST data
-     * @var [array]
-     */
-    protected $rules = [
-            'required' => [
-                ['name'],
-                ['email'],
-            ],
-            'lengthMin' => [
-                ['name', 3],
-            ],
-
-            'email' => 'email',
-        ];
-
-    /**
-     * Input labels
-     * @var array
-     */
-    protected $labels = [
-        'name'  => 'Name',
-        'email' => 'Email',
-    ];
-
-    public function store()
+    public function store(Request $request, Response $response)
     {
-        $errors = $this->validate($_POST, $this->rules, $this->labels);
+    	$this->validator->validate($request, LeadFormRequest::rules());
 
-        if ($errors) {
-            return view('home.twig', compact('errors'));
-        }
-
-        $request = (object) cleanRequest($_POST);
+    	if ($this->validator->failed()) {
+			return $response->withRedirect($this->container->router->pathFor('home'), 302);
+	    }
 
         $lead            = new Lead();
-        $lead->name      = $request->name;
-        $lead->email     = $request->email;
-        $lead->date      = date('Y-m-d H:i:s');
+        $lead->name      = $request->getParam('name');
+        $lead->cedula      = $request->getParam('cedula');
+        $lead->email     = $request->getParam('email');
 
-        if (!$lead->isRegistered($request->email)) {
+        if (!$lead->isRegistered($lead->email)) {
             $lead->save();
         }
-        Email::send($lead->email, getenv('LEAD_EMAIL_SUBJECT'), 'lead', $lead);
-        Email::send(getenv('ADMIN_EMAIL'), getenv('ADMIN_EMAIL_SUBJECT'), 'admin', $lead);
 
-        redirect("thanks/{$lead->name}");
-    }
+        sendEmail($lead->email, $lead->name, getenv('LEAD_EMAIL_SUBJECT'), 'lead', $lead);
+        sendEmail(getenv('ADMIN_EMAIL'), 'Edwin Ramírez', getenv('ADMIN_EMAIL_SUBJECT'), 'admin', $lead);
 
-    /**
-     * Route params example
-     * if the path has parameters, the $ response parameter is required as the first method argument
-     * @param $response
-     * @param $name
-     */
-    public function search($response, $name)
-    {
-        dd($name);
+	    return $response->withRedirect($this->router->pathFor('thanks'));
     }
 }

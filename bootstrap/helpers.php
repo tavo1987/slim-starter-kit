@@ -2,57 +2,6 @@
 
 use Illuminate\Support\Collection;
 
-function view($template, $vars = [])
-{
-    $loader = new Twig_Loader_Filesystem('resources/views/');
-    $twig = new Twig_Environment($loader);
-    $twig->addGlobal('siteUrl', getenv('SITE_URL'));
-    echo $twig->render($template, $vars);
-}
-
-
-/**
- * @param $data
- * @return mixed|string
- */
-function clean_input($data)
-{
-    $data = trim($data);
-    $data = strip_tags($data);
-    $data = str_replace(
-        array("\\", "¨", "º", "-",
-            "#", "|", "!", "\"",
-            "·", "$", "&", "/",
-            "(", ")", "?", "'", "¡",
-            "¿", "[", "^", "<code>", "]",
-            "+", "}", "{", "¨", "´",
-            ">", "<", ";", "Ç"),
-        ' ',
-        $data
-    );
-
-    return $data;
-}
-
-function cleanRequest($post = array())
-{
-    foreach ($post as $key => $value) {
-        $post[$key] = clean_input($value);
-    }
-
-    return $post;
-}
-
-function redirect($url)
-{
-    $slash = substr($url, 0, 1);
-
-    if ($slash === '/') {
-        return header('Location: '.getenv('SITE_URL').$url);
-    }
-    return header('Location: '.getenv('SITE_URL').'/'.$url);
-}
-
 function collection($data)
 {
     $collection = new Collection($data);
@@ -62,4 +11,30 @@ function collection($data)
 function parseUrl($url)
 {
     return explode('/', filter_var(trim( $url , '/'), FILTER_SANITIZE_URL));
+}
+
+function sendEmail($to, $name, $subject, $template, $lead)
+{
+	$path =  __DIR__. "/../resources/templates-emails/";
+	ob_start();
+	require $path . $template . '.php' ;
+	$html = ob_get_clean();
+
+	//$transport = (new Swift_SendmailTransport('/usr/sbin/sendmail -bs'));
+	$transport = new Swift_SmtpTransport(getenv('MAIL_HOST'), getenv('MAIL_PORT'));
+	$transport->setUsername(getenv('MAIL_USERNAME'))
+	          ->setPassword(getenv('MAIL_PASSWORD'));
+
+	$mailer = new Swift_Mailer($transport);
+
+	$message = (new Swift_Message($subject))
+		->setFrom([getenv('MAIL_FROM') => getenv('NAME_COMPANY')])
+		->setTo([ $to => $name])
+		->setBody($html, 'text/html');
+
+	try{
+		$mailer->send($message);
+	}catch (Exception $e) {
+		throw new $e($e->getMessage());
+	}
 }
