@@ -1,18 +1,19 @@
 let mix = require('laravel-mix');
 
-mix.setPublicPath('./');
+mix.setPublicPath('./public');
 
-mix.sass('resources/assets/sass/app.scss', 'css/app.min.css')
-    .js('resources/assets/js/app.js', 'js/app.min.js')
+mix.sass('resources/assets/sass/app.scss', 'public/css/app.min.css')
+    .js('resources/assets/js/app.js', 'public/js/app.min.js')
     .options({
         processCssUrls: false,
     })
     .browserSync({
-        proxy: 'mini-framework.dev',
+        notify: false,
+        proxy: 'slim-starter-kit.test',
         files: [
             './resources/views/**/*.twig',
-            './css/**/*.css',
-            './js/**/*.js',
+            './public/css/**/*.css',
+            './public/js/**/*.js',
         ],
         injectChanges: true,
     })
