@@ -11,7 +11,7 @@
 
         <h2>Example form without vue.js</h2>
         <div class="form">
-            <form action="store" method="POST" id="lead" data-abide>
+            <form action="{{ path_for('leads.store') }}" method="POST" id="lead">
                 {{ csrf.field | raw }}
                 <label>
                     Names <br>
