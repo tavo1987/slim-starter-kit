@@ -41,6 +41,15 @@ require_once __DIR__ . '/../config/app.php';
 $container = $app->getContainer();
 
 /**
+ * Whoops configuration
+ */
+$whoopsGuard = new \Zeuxisoo\Whoops\Provider\Slim\WhoopsGuard();
+$whoopsGuard->setApp($app);
+$whoopsGuard->setRequest($container['request']);
+$whoopsGuard->setHandlers([]);
+$whoopsGuard->install();
+
+/**
  * Registering Globally Session Helpers
  */
 $container['session'] = function () {
