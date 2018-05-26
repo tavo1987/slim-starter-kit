@@ -1,7 +1,6 @@
 <?php
 
 use App\Validation\Validator;
-use Slim\Csrf\Guard;
 use SlimSession\Helper;
 use Valitron\Validator as V;
 
@@ -41,6 +40,15 @@ require_once __DIR__ . '/../config/app.php';
 $container = $app->getContainer();
 
 /**
+ * Whoops configuration
+ */
+$whoopsGuard = new \Zeuxisoo\Whoops\Provider\Slim\WhoopsGuard();
+$whoopsGuard->setApp($app);
+$whoopsGuard->setRequest($container['request']);
+$whoopsGuard->setHandlers([]);
+$whoopsGuard->install();
+
+/**
  * Registering Globally Session Helpers
  */
 $container['session'] = function () {
@@ -49,9 +57,22 @@ $container['session'] = function () {
 
 /**
  * CSRF support
+ *
+ * @param $container
+ *
+ * @return Slim\Csrf\Guard
  */
-$container['csrf'] = function () {
-	return new Guard;
+$container['csrf'] = function ($container) {
+	$guard = new Slim\Csrf\Guard();
+	$guard->setFailureCallable(function ($request, $response, $next) use ($container){
+		$body = new \Slim\Http\Body(fopen('php://temp', 'r+'));
+		$body->write( $container->view->fetch('errors/csrf.twig') );
+		return $response->withStatus( 400 )
+		                ->withHeader( 'Content-Type', 'text/html' )
+		                ->withBody( $body );
+	});
+
+	return $guard;
 };
 
 /**

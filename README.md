@@ -56,10 +56,10 @@ con una estructura muy parecida a Laravel.
 
 ## Instalación y Configuración
 1. Ejecutar el siguiente comando para crear el proyecto:
-    - `composer create-project tavo1987/slim-starter-kit project-name`
+    - `composer create-project tavo1987/mini-framework project-name`
 2. Crear base de datos para guardar datos del formulario
 3. Configurar los datos correctos en el archivo `.env`
-4. Ejecutar el siguiente comando:
+4. Ejecutar el siguiente comando para crear las tablas por defecto `users`, `leads` y `migrations`:
     - `vendor/bin/phinx migrate`
 5. Seleccionar el idioma de los mensajes de valitron mediante la variable `VALITRON_LANG`
     este puede tener los siguiente valores `en` or `es` por defecto esta en inglés
