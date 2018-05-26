@@ -1,7 +1,6 @@
 <?php
 
 use App\Validation\Validator;
-use Slim\Csrf\Guard;
 use SlimSession\Helper;
 use Valitron\Validator as V;
 
@@ -58,9 +57,22 @@ $container['session'] = function () {
 
 /**
  * CSRF support
+ *
+ * @param $container
+ *
+ * @return Slim\Csrf\Guard
  */
-$container['csrf'] = function () {
-	return new Guard;
+$container['csrf'] = function ($container) {
+	$guard = new Slim\Csrf\Guard();
+	$guard->setFailureCallable(function ($request, $response, $next) use ($container){
+		$body = new \Slim\Http\Body(fopen('php://temp', 'r+'));
+		$body->write( $container->view->fetch('errors/csrf.twig') );
+		return $response->withStatus( 400 )
+		                ->withHeader( 'Content-Type', 'text/html' )
+		                ->withBody( $body );
+	});
+
+	return $guard;
 };
 
 /**
