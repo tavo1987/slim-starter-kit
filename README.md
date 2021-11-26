@@ -146,12 +146,6 @@ De esta menera mejoramos el tiempo de carga, mas información en [web font loade
 
     nota: Recordar actualizar la fuente en el archivo de configuración sass `resources/assets/sass/lib/_settings.scss`
 
-## Vulnerabilidades de Seguridad o Errores
-
-Si descubres una vulnerabilidad de seguridad dentro de este mini framework, envía un correo electrónico a
-tavo198718@gmail.com. Todas las vulnerabilidades de seguridad serán tratadas los más rápido posible.
-o abre un issue para especificar el error.
-
 ## Licencia
 
 Mini-framework es un software de código abierto bajo licencia [MIT license](http://opensource.org/licenses/MIT).
